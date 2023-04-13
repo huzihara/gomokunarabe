@@ -433,14 +433,14 @@ int AI(int field[52][52],int x,int y,int kx,int ky,int turn,int think[2],int nol
 						}
 						if(combo>=nolma+1)//コマにリーチがかかっているなら
 						{
-							field2[i][j]+=4*think[n];
+							field2[i][j]+=2*nolma*think[n];
 						}
 						field2[i][j]+=combo*think[n];
 					}
 				}
 				if(ayasi>=2)//塞がないと詰みなら
 				{
-					field2[i][j]+=2*think[n];
+					field2[i][j]+=2*nolma*think[n];
 				}
 				if(i-nolma>=0 && i+nolma<=y+1 && j-nolma>=0 && j+nolma<=x+1)//壁から離れているなら
 				{
