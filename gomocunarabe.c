@@ -13,7 +13,7 @@ int main()
 {
 	int nolma=5;
 	int com[2]={0,1};
-	int think[2][2]={{5,5},{5,5}};
+	int think[2][2]={{0,0},{5,5}};
 	int x=15,y=15;
 	int kx=1,ky=1;
 	int tx,ty;
@@ -353,9 +353,9 @@ int AI(int field[52][52],int x,int y,int kx,int ky,int turn,int think[2],int nol
 	int tmax;
 	int fmax;
 	int rnum=0;
-	int combo=0;
-	int ayasi=0;
-	int brock=0;
+	int combo;
+	int ayasi;
+	int brock;
 	
 	for(i=1;i<=y;i++)//y方向iマス目
 	{
@@ -363,9 +363,9 @@ int AI(int field[52][52],int x,int y,int kx,int ky,int turn,int think[2],int nol
 		{
 			if(field[i][j]==0)//参照しているマスに何も置かれていないなら
 			{
-				ayasi=0;
 				for(n=0;n<2;n++)//n=0:自分、n=1:相手、のコマを見る
 				{
+					ayasi=0;
 					for(k=0;k<4;k++)//縦、横、斜め2つの方向を見る
 					{
 						combo=2;
@@ -437,14 +437,10 @@ int AI(int field[52][52],int x,int y,int kx,int ky,int turn,int think[2],int nol
 						}
 						field2[i][j]+=combo*think[n];
 					}
-				}
-				if(ayasi>=2)//塞がないと詰みなら
-				{
-					field2[i][j]+=2*nolma*think[n];
-				}
-				if(i-nolma>=0 && i+nolma<=y+1 && j-nolma>=0 && j+nolma<=x+1)//壁から離れているなら
-				{
-					field2[i][j]++;
+					if(ayasi>=2)//塞がないと詰みなら
+					{
+						field2[i][j]+=2*nolma*think[n];
+					}
 				}
 				if(field2[i][j]>max)//参照しているマスの評価が置けるマスの中で最大なら
 				{
